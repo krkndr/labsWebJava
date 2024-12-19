@@ -25,13 +25,13 @@ import java.util.UUID;
 @SpringBootTest
 public class CategoryControllerIT extends Abstract {
 
-    @Autowired
+    //@Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    //@Autowired
     private CategoryRepository categoryRepository;
 
     @SpyBean

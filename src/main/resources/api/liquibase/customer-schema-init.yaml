@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 3-create-customer
+      id: 3-customer
       author: krkndr
       changes:
         - createTable:

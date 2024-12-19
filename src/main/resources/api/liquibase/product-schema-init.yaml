@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2-create-product
+      id: 2-product
       author: krkndr
       changes:
         - createTable:

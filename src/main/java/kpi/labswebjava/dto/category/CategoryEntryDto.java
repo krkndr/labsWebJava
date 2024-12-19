@@ -1,5 +1,6 @@
 package kpi.labswebjava.dto.category;
 
+
 import kpi.labswebjava.dto.ProductEntryDto;
 import lombok.Builder;
 import lombok.Value;

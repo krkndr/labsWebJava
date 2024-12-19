@@ -1,6 +1,5 @@
 package kpi.labswebjava.repository;
 
-
 import kpi.labswebjava.repository.entity.CustomerEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

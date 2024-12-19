@@ -1,5 +1,6 @@
 package kpi.labswebjava.config;
 
+
 import kpi.labswebjava.repository.NaturalIdRepositoryImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

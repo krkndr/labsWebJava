@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-
 import java.io.Serializable;
 import java.util.Optional;
 

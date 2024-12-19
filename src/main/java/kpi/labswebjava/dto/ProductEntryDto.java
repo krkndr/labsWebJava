@@ -6,7 +6,6 @@ import lombok.extern.jackson.Jacksonized;
 
 import java.util.UUID;
 
-
 @Value
 @Builder
 @Jacksonized

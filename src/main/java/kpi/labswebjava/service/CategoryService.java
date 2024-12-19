@@ -1,5 +1,4 @@
 package kpi.labswebjava.service;
-
 import kpi.labswebjava.domain.Category;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 4-create-orders
+      id: 4-orders
       author: krkndr
       changes:
         - createTable:

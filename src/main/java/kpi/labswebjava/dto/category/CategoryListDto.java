@@ -1,6 +1,5 @@
 package kpi.labswebjava.dto.category;
 
-
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;

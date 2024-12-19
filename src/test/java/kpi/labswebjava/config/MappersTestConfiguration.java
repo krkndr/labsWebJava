@@ -12,6 +12,5 @@ public class MappersTestConfiguration {
     public CategoryMapper categoryMapper() {
         return Mappers.getMapper(CategoryMapper.class);
     }
-
 }
 

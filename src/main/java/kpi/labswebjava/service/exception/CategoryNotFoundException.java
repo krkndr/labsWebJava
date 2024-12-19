@@ -1,5 +1,4 @@
 package kpi.labswebjava.service.exception;
-
 import java.util.UUID;
 
 public class CategoryNotFoundException extends RuntimeException {
