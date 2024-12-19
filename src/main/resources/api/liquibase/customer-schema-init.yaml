@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-create-customer
+      author: krkndr
+      changes:
+        - createTable:
+            tableName: customers
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: customer_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: customers
+            columnNames: email
+            constraintName: uq_customer_email

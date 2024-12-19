@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/db.product-schema-customer.yaml
+  - include:
+      file: liquibase/db.category-schema-init.yaml
+  - include:
+      file: liquibase/db.product-schema-init.yaml
+  - include:
+      file: liquibase/db.order-schema-init.yaml
+  - include:
+      file: liquibase/db.order-item-schema-init.yaml
