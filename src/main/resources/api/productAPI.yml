@@ -1,0 +1,179 @@
+openapi: 3.0.1
+info:
+  title: Product API
+  description: API for managing products in the Cosmo Cats Intergalactic Marketplace.
+  version: 1.0.0
+servers:
+  - url: /api/v1/product
+    description: Base URL for Product API
+paths:
+  /:
+    post:
+      summary: Create a new product
+      description: Adds a new product to the marketplace.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        '200':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /{id}:
+    get:
+      summary: Get product by ID
+      description: Returns a product by its unique ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: UUID of the product
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+    put:
+      summary: Update a product by ID
+      description: Updates an existing product.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: UUID of the product to update
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+    delete:
+      summary: Delete a product by ID
+      description: Deletes a product by its unique ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: UUID of the product to delete
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Product deleted successfully
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+
+components:
+  schemas:
+    ProductDto:
+      type: object
+      properties:
+        nameProduct:
+          type: string
+          maxLength: 100
+          example: "Comet Streak Pen"
+          description: "Product name must include a cosmic term."
+        categoryID:
+          type: string
+          format: uuid
+          example: "1d8f4e6e-89ab-4f4b-9cb0-3b9a8a5eb5d7"
+        description:
+          type: string
+          maxLength: 255
+          example: "A pen with a cosmic touch."
+        price:
+          type: number
+          format: double
+          minimum: 0
+          example: 7.99
+      required:
+        - nameProduct
+        - categoryID
+        - price
+
+    ValidationError:
+      type: object
+      properties:
+        invalidParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParamsViolationDetails'
+
+    ParamsViolationDetails:
+      type: object
+      properties:
+        fieldName:
+          type: string
+          example: "nameProduct"
+        reason:
+          type: string
+          example: "Product name cannot be blank."
+
+    ProblemDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          example: "product-not-found"
+        title:
+          type: string
+          example: "Product Not Found"
+        status:
+          type: integer
+          format: int32
+          example: 404
+        detail:
+          type: string
+          example: "Product with id 123e4567-e89b-12d3-a456-426614174000 not found."
