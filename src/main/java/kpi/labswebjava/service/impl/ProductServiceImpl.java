@@ -57,9 +57,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(UUID productId) {
-        Product product = getProductById(productId);
-        products.remove(product);
-        log.info("Product with id {} deleted successfully", productId);
+        Optional<Product> productOptional = products.stream()
+                .filter(product -> product.getId().equals(productId))
+                .findFirst();
+
+        if (productOptional.isPresent()) {
+            products.remove(productOptional.get());
+            log.info("Product with id {} deleted successfully", productId);
+        } else {
+            log.info("Product with id {} not found, no action taken", productId);
+        }
     }
 
     private List<Product> buildAllProductMock() {

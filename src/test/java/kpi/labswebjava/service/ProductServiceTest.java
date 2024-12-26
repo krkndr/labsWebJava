@@ -16,8 +16,7 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Product Service Tests")
@@ -97,7 +96,6 @@ class ProductServiceTest {
     }
 
     @Test
-    @Order(6)
     void testDeleteProduct() {
         productService.createProduct(product);
         productService.deleteProduct(product.getId());
@@ -105,10 +103,9 @@ class ProductServiceTest {
     }
 
     @Test
-    @Order(7)
     void testDeleteProductNotFound() {
-        assertThrows(ProductNotFoundException.class, () ->
-                productService.deleteProduct(UUID.randomUUID()));
+        UUID nonExistentId = UUID.randomUUID();
+        assertDoesNotThrow(() -> productService.deleteProduct(nonExistentId));
     }
 
     @ParameterizedTest

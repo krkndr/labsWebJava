@@ -142,14 +142,20 @@ public class ProductControllerIT {
                 .andExpect(jsonPath("$.invalidParams[0].reason").value("Product name must contain a cosmic term (e.g., 'star', 'galaxy', 'comet')"));
     }
 
-
-
-
     @Test
     void testDeleteProduct() throws Exception {
         doNothing().when(productService).deleteProduct(PRODUCT_ID);
 
         mockMvc.perform(delete("/api/v1/product/{id}", PRODUCT_ID)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void testDeleteProductProductNotFound() throws Exception {
+        doNothing().when(productService).deleteProduct(PRODUCT_ID);
+        mockMvc.perform(delete("/api/v1/product/{id}", UUID.randomUUID())
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
